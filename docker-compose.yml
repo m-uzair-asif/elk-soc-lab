@@ -1,0 +1,65 @@
+# Docker Compose file version
+
+version: '3.8'
+
+# All services starts from here
+services:
+  elasticsearch:
+    # Official elasticsearch docker image from ES
+    image: docker.elastic.co/elasticsearch/elasticsearch:9.4.1-amd64
+    platform: linux/amd64
+    # Human-readable container name
+    container_name: elasticsearch
+    # Environment variables inside containers
+    environment:
+    # Using as a single node
+      - discovery.type=single-node
+    # Disable security
+      - xpack.security.enabled=false
+    ports:
+    # Port Mapping
+      - "9200:9200"
+    networks:
+    # Allow containers to communicate
+      - elk
+
+  kibana:
+    # Official kibana docker image from ES
+    image: docker.elastic.co/kibana/kibana:9.4.1-amd64
+    platform: linux/amd64
+    # Container name
+    container_name: kibana
+    # Environment variables inside kibana
+    environment:
+      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+    ports:
+    # Port Mapping
+      - "5601:5601"
+    # Start Elasticsearch before kibana
+    # Prevent kibana startup failure
+    depends_on:
+      - elasticsearch
+    # Allowing different containers to communicate
+    networks:
+      - elk
+
+  filebeat:
+    # Official Filebeat docker image from ES
+    image: docker.elastic.co/beats/filebeat:9.4.1-amd64
+    platform: linux/amd64
+    #Container name
+    container_name: filebeat
+    # Permissions
+    user: root
+    # Place to read logs
+    volumes:
+      - ./logs:/logs
+    depends_on:
+    # Dependencies
+      - elasticsearch
+    # Inside network communication
+    networks:
+      - elk
+
+networks:
+  elk: 
