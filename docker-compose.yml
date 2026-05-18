@@ -52,7 +52,9 @@ services:
     # Permissions
     user: root
     # Place to read logs
+    command: ["--strict.perms=false"]
     volumes:
+      - ./filebeat.yml:/usr/share/filebeat/filebeat.yml
       - ./logs:/logs
     depends_on:
     # Dependencies
