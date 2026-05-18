@@ -1,11 +1,25 @@
 filebeat.inputs:
+
   - type: filestream
+    id: custom-json-logs
     enabled: true
+
     paths:
       - /logs/*.json
 
-output.elasticsearch:
-  hosts: ["http://elasticsearch:9200"]
+    parsers:
+      - ndjson:
+          target: ""
+
+  - type: filestream
+    id: linux-auth-logs
+    enabled: true
+
+    paths:
+      - /hostfs/var/log/auth.log
+
+output.logstash:
+  hosts: ["logstash:5044"]
 
 setup.kibana:
   host: "kibana:5601"

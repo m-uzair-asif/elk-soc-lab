@@ -54,14 +54,27 @@ services:
     # Place to read logs
     command: ["--strict.perms=false"]
     volumes:
-      - ./filebeat.yml:/usr/share/filebeat/filebeat.yml
-      - ./logs:/logs
+      - ./filebeat.yml:/usr/share/filebeat/filebeat.yml:ro
+      - ./logs:/logs:ro
+      - /var/log:/hostfs/var/log:ro
     depends_on:
     # Dependencies
       - elasticsearch
     # Inside network communication
     networks:
       - elk
+
+  logstash:
+    image: docker.elastic.co/logstash/logstash:9.4.1
+    container_name: logstash
+    ports:
+      - "5044:5044"
+    volumes:
+      - ./logstash/pipeline:/usr/share/logstash/pipeline
+    networks:
+      - elk
+    depends_on:
+      - elasticsearch
 
 networks:
   elk: 
