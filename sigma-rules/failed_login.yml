@@ -1,0 +1,33 @@
+title: Multiplw Failed Login Attempts From Single Source
+id: 4e69d723-690c-4573-8998-349c258d400e
+status: experimental
+description: Detect Failed Login Attempts
+
+references:
+  - https://attack.mitre.org/techniques/T1110
+author: Jerry
+date: 2026/05/18
+
+logsource: 
+  category: authentication
+  product: linux
+detection:
+  selection:
+    event: failed_login
+  condition: selection
+timeframe: 5m
+
+fields: 
+  - source.ip
+  - user.hostname
+  - host.hostname
+  - event
+
+falsepositives:
+  - Automated service account with expired passwords
+  - Misconfigured interal script
+level: medium
+
+tags:
+  - attack.initial_access
+  - attact.t1110.001

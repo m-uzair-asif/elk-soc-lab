@@ -1,0 +1,12 @@
+{"@timestamp": "2026-05-18 18:02:49.163417", "event": "malware_detected", "source": {"ip": "10.0.0.8"}, "user": {"hostname": "root"}, "host": {"hostname": "soc-lab"}}
+{"@timestamp": "2026-05-18 18:02:51.163735", "event": "failed_login", "source": {"ip": "10.0.0.8"}, "user": {"hostname": "admin"}, "host": {"hostname": "soc-lab"}}
+{"@timestamp": "2026-05-18 18:02:53.164524", "event": "brute_force_attempt", "source": {"ip": "185.220.101.1"}, "user": {"hostname": "ubuntu"}, "host": {"hostname": "soc-lab"}}
+{"@timestamp": "2026-05-18 18:02:55.165031", "event": "succesful_login", "source": {"ip": "185.220.101.1"}, "user": {"hostname": "ubuntu"}, "host": {"hostname": "soc-lab"}}
+{"@timestamp": "2026-05-18 18:02:57.165583", "event": "port_scan", "source": {"ip": "185.220.101.1"}, "user": {"hostname": "ubuntu"}, "host": {"hostname": "soc-lab"}}
+{"@timestamp": "2026-05-18 18:02:59.165820", "event": "failed_login", "source": {"ip": "192.168.1.5"}, "user": {"hostname": "admin"}, "host": {"hostname": "soc-lab"}}
+{"@timestamp": "2026-05-18 18:03:01.166192", "event": "malware_detected", "source": {"ip": "192.168.1.5"}, "user": {"hostname": "guest"}, "host": {"hostname": "soc-lab"}}
+{"@timestamp": "2026-05-18 19:35:47.507733", "event": "port_scan", "source": {"ip": "192.168.1.5"}, "user": {"hostname": "ubuntu"}, "host": {"hostname": "soc-lab"}}
+{"@timestamp": "2026-05-18 19:35:49.509070", "event": "brute_force_attempt", "source": {"ip": "10.0.0.8"}, "user": {"hostname": "ubuntu"}, "host": {"hostname": "soc-lab"}}
+{"@timestamp": "2026-05-18 19:35:51.509770", "event": "malware_detected", "source": {"ip": "45.33.12.90"}, "user": {"hostname": "admin"}, "host": {"hostname": "soc-lab"}}
+{"@timestamp": "2026-05-18 19:35:53.510324", "event": "malware_detected", "source": {"ip": "45.33.12.90"}, "user": {"hostname": "guest"}, "host": {"hostname": "soc-lab"}}
+{"@timestamp": "2026-05-18 19:35:55.510967", "event": "succesful_login", "source": {"ip": "45.33.12.90"}, "user": {"hostname": "ubuntu"}, "host": {"hostname": "soc-lab"}}
