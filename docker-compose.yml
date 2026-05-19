@@ -1,7 +1,3 @@
-# Docker Compose file version
-
-version: '3.8'
-
 # All services starts from here
 services:
   elasticsearch:
@@ -16,6 +12,7 @@ services:
       - discovery.type=single-node
     # Disable security
       - xpack.security.enabled=false
+      - xpack.license.self_generated.type=basic
     ports:
     # Port Mapping
       - "9200:9200"
@@ -56,7 +53,7 @@ services:
     volumes:
       - ./filebeat.yml:/usr/share/filebeat/filebeat.yml:ro
       - ./logs:/logs:ro
-      - /var/log:/hostfs/var/log:ro
+      - /var/log/auth.log:/hostfs/var/log/auth.log:ro
     depends_on:
     # Dependencies
       - elasticsearch
@@ -65,7 +62,7 @@ services:
       - elk
 
   logstash:
-    image: docker.elastic.co/logstash/logstash:9.4.1
+    image: docker.elastic.co/logstash/logstash:9.4.1-amd64
     container_name: logstash
     ports:
       - "5044:5044"
