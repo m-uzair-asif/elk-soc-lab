@@ -1,16 +1,4 @@
 filebeat.inputs:
-
-  - type: filestream
-    id: custom-json-logs
-    enabled: true
-
-    paths:
-      - /logs/*.json
-
-    parsers:
-      - ndjson:
-          target: ""
-
   - type: filestream
     id: linux-auth-logs
     enabled: true
