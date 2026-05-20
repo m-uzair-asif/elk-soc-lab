@@ -62,14 +62,20 @@ services:
       - elk
 
   logstash:
+    # Logstash docker image
     image: docker.elastic.co/logstash/logstash:9.4.1-amd64
+    # Container name
     container_name: logstash
+    # Port mapping
     ports:
       - "5044:5044"
+    # Volume for pipeline
     volumes:
       - ./logstash/pipeline:/usr/share/logstash/pipeline
+    # Communication between networks
     networks:
       - elk
+    # First run ES then depending
     depends_on:
       - elasticsearch
 
